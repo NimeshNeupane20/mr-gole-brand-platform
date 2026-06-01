@@ -577,48 +577,61 @@ a { color: inherit; }
 /* ============================================================
    Video gallery — scatter→settle morph (progressive enhancement)
    ============================================================ */
+/* baseline / fallback (mobile, reduced-motion, no-JS): clean grid */
 .vgallery {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; perspective: 1200px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; perspective: 1300px;
 }
-.vcard { text-decoration: none; display: block; will-change: transform, opacity; }
-.vgallery[data-morph] .vcard { opacity: 0; }            /* hidden until JS drives the settle */
+.vcard { text-decoration: none; display: block; will-change: transform, opacity; --r: 0deg; }
+
+/* ARC mode — JS adds .vgallery--arc on desktop + motion-ok; cards fan on a parabolic arc */
+.vgallery--arc { display: block; position: relative; height: 400px; grid-template-columns: none; margin-top: 10px; }
+.vgallery--arc .vcard { position: absolute; top: 44px; left: 50%; width: 168px; margin-left: -84px; opacity: 0; }
+
 .vcard__inner {
   display: block; background: #fff; border: 1px solid var(--border);
   border-radius: var(--radius-card); overflow: hidden; transform-style: preserve-3d;
-  transition: transform .35s var(--ease), border-color .25s var(--ease), box-shadow .35s var(--ease);
+  transition: transform .4s var(--ease), border-color .25s var(--ease), box-shadow .4s var(--ease);
 }
+/* hover: lift + straighten (counter the arc tilt) + scale + subtle 3D depth */
 .vcard:hover .vcard__inner, .vcard:focus-visible .vcard__inner {
-  transform: translateY(-10px) rotateX(5deg) rotateY(-4deg) scale(1.04);
+  transform: translateY(-18px) rotate(calc(-1 * var(--r))) scale(1.12) rotateX(4deg);
   border-color: var(--border-strong); box-shadow: var(--shadow-float);
 }
+.vgallery--arc .vcard:hover, .vgallery--arc .vcard:focus-within { z-index: 60; }
+
 .vcard__thumb {
   display: flex; align-items: center; justify-content: center; position: relative;
   aspect-ratio: 16/9; background-size: cover; background-position: center; background-color: #2b1d14;
 }
 .vcard__play {
-  width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.92);
+  width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.92);
   display: flex; align-items: center; justify-content: center;
-  transform: scale(0.86); opacity: 0.85; transition: transform .3s var(--ease), opacity .3s var(--ease);
+  transform: scale(0.84); opacity: 0.85; transition: transform .3s var(--ease), opacity .3s var(--ease);
 }
-.vcard__play svg { width: 20px; height: 20px; margin-left: 3px; color: var(--brand-red); }
+.vcard__play svg { width: 18px; height: 18px; margin-left: 3px; color: var(--brand-red); }
 .vcard:hover .vcard__play { transform: scale(1); opacity: 1; }
 .vcard__views {
-  position: absolute; bottom: 10px; right: 10px; background: rgba(20,14,8,0.8); color: #fff;
-  font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: var(--radius-pill);
+  position: absolute; bottom: 9px; right: 9px; background: rgba(20,14,8,0.8); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 4px 9px; border-radius: var(--radius-pill);
 }
-.vcard__body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; }
-.vcard__title { font-family: var(--font-display); font-weight: 600; font-size: 17px; line-height: 1.25; color: var(--fg1); }
+.vcard__body { padding: 14px 15px 15px; display: flex; flex-direction: column; gap: 6px; }
+.vcard__title { font-family: var(--font-display); font-weight: 600; font-size: 15px; line-height: 1.22; color: var(--fg1); }
 .vcard__cta {
-  display: inline-flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 600; color: var(--brand-red);
+  display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; color: var(--brand-red);
   opacity: 0; transform: translateY(4px); transition: opacity .3s var(--ease), transform .3s var(--ease);
 }
 .vcard__cta svg { width: 14px; height: 14px; }
 .vcard:hover .vcard__cta, .vcard:focus-visible .vcard__cta { opacity: 1; transform: none; }
 
+/* grid cards a touch larger than arc cards */
+.vgallery:not(.vgallery--arc) .vcard__title { font-size: 17px; }
+.vgallery:not(.vgallery--arc) .vcard__body { padding: 16px 18px 18px; gap: 8px; }
+
 @media (max-width: 900px) { .vgallery { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) { .vgallery { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) {
-  .vgallery[data-morph] .vcard { opacity: 1 !important; transform: none !important; }
+  .vgallery--arc { display: grid !important; position: static; height: auto; }
+  .vgallery--arc .vcard { position: static; width: auto; margin: 0; opacity: 1 !important; transform: none !important; }
   .vcard__inner { transition: none; }
 }
 

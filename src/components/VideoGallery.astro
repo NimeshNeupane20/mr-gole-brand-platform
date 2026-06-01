@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+const videos = await getCollection('videos');
+const {
+  eyebrow = 'Watch',
+  heading = 'Some videos people loved',
+  sub = 'Real favorites from the channel — scroll and take your pick.',
+} = Astro.props;
+---
+<section class="section section--cream" id="videos">
+  <div class="container">
+    <div class="section__head section__head--center reveal">
+      <p class="eyebrow">{eyebrow}</p>
+      <h2 class="h2">{heading}</h2>
+      <p class="body" style="margin-top:14px">{sub}</p>
+    </div>
+
+    <div class="vgallery" role="list">
+      {videos.map((v, i) => (
+        <a class="vcard" style={`--i:${i}`} role="listitem" href={`https://www.youtube.com/watch?v=${v.data.id}`} target="_blank" rel="noopener">
+          <span class="vcard__inner">
+            <span class="vcard__thumb" style={`background-image:url(https://i.ytimg.com/vi/${v.data.id}/hqdefault.jpg)`}>
+              <span class="vcard__play"><svg aria-hidden="true"><use href="#i-play"></use></svg></span>
+              {v.data.views && <span class="vcard__views">{v.data.views}</span>}
+            </span>
+            <span class="vcard__body">
+              <span class="vcard__title">{v.data.title}</span>
+              <span class="vcard__cta">Watch on YouTube<svg aria-hidden="true"><use href="#i-chevron"></use></svg></span>
+            </span>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <a class="mg-btn mg-btn--secondary mg-btn--lg" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener">See all videos on YouTube</a>
+    </div>
+  </div>
+</section>

@@ -1,37 +1,9 @@
 ---
 import Base from '../layouts/Base.astro';
-import { getCollection } from 'astro:content';
-const videos = await getCollection('videos');
+import VideoGallery from '../components/VideoGallery.astro';
 ---
 <Base page="about" title="Media — Mr Gole" description="Watch Mr Gole's food hunts, eating challenges and The Second Plate videos.">
-  <main id="main">
-    <section class="section section--cream" id="videos" style="padding-top:120px">
-      <div class="container">
-        <div class="section__head section__head--center reveal">
-          <p class="eyebrow">Media</p>
-          <h2 class="h2">Watch the journey</h2>
-          <p class="body" style="margin-top:14px">Real videos from the channel — scroll and take your pick.</p>
-        </div>
-        <div class="vgallery" role="list">
-          {videos.map((v, i) => (
-            <a class="vcard" style={`--i:${i}`} role="listitem" href={`https://www.youtube.com/watch?v=${v.data.id}`} target="_blank" rel="noopener">
-              <span class="vcard__inner">
-                <span class="vcard__thumb" style={`background-image:url(https://i.ytimg.com/vi/${v.data.id}/hqdefault.jpg)`}>
-                  <span class="vcard__play"><svg aria-hidden="true"><use href="#i-play"></use></svg></span>
-                  {v.data.views && <span class="vcard__views">{v.data.views}</span>}
-                </span>
-                <span class="vcard__body">
-                  <span class="vcard__title">{v.data.title}</span>
-                  <span class="vcard__cta">Watch on YouTube<svg aria-hidden="true"><use href="#i-chevron"></use></svg></span>
-                </span>
-              </span>
-            </a>
-          ))}
-        </div>
-        <div style="text-align:center;margin-top:48px" class="reveal">
-          <a class="mg-btn mg-btn--secondary mg-btn--lg" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener">See all videos on YouTube</a>
-        </div>
-      </div>
-    </section>
+  <main id="main" style="padding-top:64px">
+    <VideoGallery eyebrow="Media" heading="Watch the journey" sub="Real videos from the channel — scroll and take your pick." />
   </main>
 </Base>
