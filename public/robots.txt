@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://mr-gole-brand-platform.vercel.app/sitemap-index.xml

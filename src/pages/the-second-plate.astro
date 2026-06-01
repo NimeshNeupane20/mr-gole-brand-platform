@@ -1,0 +1,246 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base page="restaurant" title="The Second Plate — Budhanilkantha, Kathmandu · by Mr Gole" description="The Second Plate — a warm Nepali restaurant in Budhanilkantha, Kathmandu by Mr Gole. Signature buff Mo:Mo, keema noodles and rice bowls. Because one plate is never enough.">
+<main id="main">
+
+  <!-- ============ Hero (billboard) ============ -->
+  <section class="hero hero--brand" aria-label="The Second Plate">
+    <div class="hero__media hero__media--restaurant"></div>
+    <div class="hero__scrim"></div>
+    <div class="hero__body">
+      <h1 class="visually-hidden">The Second Plate — where one plate is never enough · Budhanilkantha, Kathmandu</h1>
+      <div class="hero__actions">
+        <a class="mg-btn mg-btn--primary mg-btn--lg" href="#menu">Browse the menu</a>
+        <a class="mg-btn mg-btn--white mg-btn--lg" href="#visit">
+          Find us
+          <svg width="16" height="16" aria-hidden="true"><use href="#i-chevron"></use></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Story + launch quote ============ -->
+  <section class="section" id="story">
+    <div class="container">
+      <div class="section__head section__head--center reveal" style="max-width:820px">
+        <p class="eyebrow">Our story</p>
+        <h2 class="h2">A place built with passion and flavor</h2>
+        <p class="lead" style="margin-top:22px">"This isn't just another restaurant — it's a place built with passion, flavor, and the promise of giving you a reason to always come back for The Second Plate. From delicious momos to flavorful keema noodles and more."</p>
+        <p class="body" style="margin-top:18px">In 2026, Mr Gole teamed up with friends to open The Second Plate in Budhanilkantha. The goal was simple: a cozy spot where friends and family gather over hearty Nepali dishes — and always come back for seconds.</p>
+        <p class="fine" style="margin-top:18px">Founded 2026 · Owner Mr Gole (Phuntsok Namgyel Lama) &amp; partners</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Menu ============ -->
+  <section class="section section--cream" id="menu">
+    <div class="container">
+      <div class="section__head section__head--center reveal">
+        <p class="eyebrow">The menu</p>
+        <h2 class="h2">What we serve</h2>
+        <p class="body" style="margin-top:14px">Hearty Nepali comfort food, served generously.</p>
+      </div>
+      <!-- NOTE[owner]: items + descriptions are from the restaurant's own printed menu.
+           Only Buff Mo:Mo (Rs.250) price is confirmed; others show "Ask in store" until prices supplied. -->
+      <div class="dish-grid">
+        <article class="dish-card reveal">
+          <div class="dish-card__img" style="background-image:url(/assets/img/dish-momo.png)" role="img" aria-label="Himalayan Momo"></div>
+          <div class="dish-card__body">
+            <div class="dish-card__row">
+              <span class="dish-card__name">Himalayan Momo<span class="tag tag--signature">Signature</span></span>
+              <span class="dish-card__price">Rs. 250</span>
+            </div>
+            <p class="dish-card__desc">Hand-rolled dumplings filled with seasoned meat, served with our signature sesame achar. Buff Mo:Mo is the one everyone comes back for.</p>
+          </div>
+        </article>
+        <article class="dish-card reveal" data-delay="1">
+          <div class="dish-card__img" style="background-image:url(/assets/img/dish-keema-noodles.png)" role="img" aria-label="Keema Noodles"></div>
+          <div class="dish-card__body">
+            <div class="dish-card__row">
+              <span class="dish-card__name">Keema Noodles</span>
+              <span class="dish-card__price dish-card__price--ask">Ask in store</span>
+            </div>
+            <p class="dish-card__desc">Wok-tossed noodles with spiced minced meat, crunchy veg and a perfect blend of Himalayan spices.</p>
+          </div>
+        </article>
+        <article class="dish-card reveal" data-delay="2">
+          <div class="dish-card__img" style="background-image:url(/assets/img/dish-rice-bowl.png)" role="img" aria-label="Buff & Capsicum Rice Bowl"></div>
+          <div class="dish-card__body">
+            <div class="dish-card__row">
+              <span class="dish-card__name">Buff &amp; Capsicum Rice Bowl</span>
+              <span class="dish-card__price dish-card__price--ask">Ask in store</span>
+            </div>
+            <p class="dish-card__desc">Tender buff with crisp capsicum over aromatic rice, finished with a smoky wok sear.</p>
+          </div>
+        </article>
+      </div>
+
+      <div class="menu-list reveal">
+        <div class="menu-row">
+          <div>
+            <span class="menu-row__name">Himalayan Fried Rice</span>
+            <p class="menu-row__desc">Fragrant basmati rice stir-fried with fresh vegetables, egg and subtle Himalayan spices.</p>
+          </div>
+          <span class="menu-row__price menu-row__price--ask">Ask in store</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-row__name">Chicken &amp; Capsicum Rice Bowl</span>
+            <p class="menu-row__desc">Juicy chicken with bell peppers over steamed rice, finished with light spices and fresh herbs.</p>
+          </div>
+          <span class="menu-row__price menu-row__price--ask">Ask in store</span>
+        </div>
+        <div class="menu-row">
+          <div>
+            <span class="menu-row__name">Sukuti Aalu Heritage Plate</span>
+            <p class="menu-row__desc">Smoked sukuti with spiced potatoes and traditional mountain spices — celebrating Nepal's rich culinary heritage.</p>
+          </div>
+          <span class="menu-row__price menu-row__price--ask">Ask in store</span>
+        </div>
+      </div>
+      <div class="menu-note reveal">
+        <h3 class="h3">Save room for the second</h3>
+        <p class="body" style="margin:12px 0 20px">See today's full menu and prices at the restaurant, or message us on Instagram.</p>
+        <a class="mg-btn mg-btn--primary" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener">
+          <svg width="17" height="17" aria-hidden="true"><use href="#i-instagram"></use></svg> Menu on Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Brand split (mockup) ============ -->
+  <section class="section">
+    <div class="container">
+      <div class="feature feature--first">
+        <div class="split split--reverse reveal">
+          <div class="split__text">
+            <p class="eyebrow">The brand</p>
+            <h2 class="h2">Some meals bring you back</h2>
+            <p class="body">From the bowl to the bag, The Second Plate is built around one feeling — the craving that makes you come back for more. Always ready for your second plate.</p>
+            <div class="split__actions">
+              <a class="mg-btn mg-btn--primary" href="#visit">Visit us</a>
+              <a class="mg-btn mg-btn--ghost" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener">Follow on Instagram <svg width="16" height="16" aria-hidden="true"><use href="#i-chevron"></use></svg></a>
+            </div>
+          </div>
+          <div class="split__media">
+            <div class="photo photo--img photo--zoom" style="background-image:url(/assets/img/brand-mockup.png);background-color:#f4f2ee" role="img" aria-label="The Second Plate brand — apron, packaging and menu"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Reviews (Google + testimonials) ============ -->
+  <section class="section" id="reviews">
+    <div class="container">
+      <div class="section__head section__head--center reveal">
+        <p class="eyebrow">Reviews</p>
+        <h2 class="h2">What people are saying</h2>
+      </div>
+
+      <!-- Google aggregate -->
+      <div class="reveal" style="max-width:560px;margin:0 auto 56px;text-align:center">
+        <div class="rating-row" style="justify-content:center">
+          <div class="rating-score">4.2</div>
+          <div>
+            <div class="rating-stars" aria-label="4.2 out of 5 stars">
+              <svg aria-hidden="true"><use href="#i-star"></use></svg><svg aria-hidden="true"><use href="#i-star"></use></svg><svg aria-hidden="true"><use href="#i-star"></use></svg><svg aria-hidden="true"><use href="#i-star"></use></svg><svg aria-hidden="true"><use href="#i-star"></use></svg>
+            </div>
+            <p class="rating-meta" style="margin-top:8px">Rated on Google Maps · Budhanilkantha</p>
+          </div>
+        </div>
+        <a class="mg-btn mg-btn--secondary" style="margin-top:22px" href="https://www.google.com/maps/place/The+Second+Plate/@27.7722898,85.3595376,17z" target="_blank" rel="noopener">Read reviews on Google</a>
+      </div>
+
+      <!-- Verified creator/blogger testimonials -->
+      <div class="testi-grid">
+        <figure class="testi reveal" style="margin:0">
+          <div class="testi__stars" aria-hidden="true"><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg></div>
+          <blockquote class="testi__quote" style="border:0;padding:0;font-style:normal">"Delicious buff momo. All the best to you and partners on this new journey."</blockquote>
+          <figcaption class="testi__who">
+            <span class="testi__avatar" aria-hidden="true">L</span>
+            <span><span class="testi__name">Lex Limbu</span><span class="testi__role">Blogger &amp; influencer · Apr 2026</span></span>
+          </figcaption>
+        </figure>
+        <figure class="testi reveal" data-delay="1" style="margin:0">
+          <div class="testi__stars" aria-hidden="true"><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg></div>
+          <blockquote class="testi__quote" style="border:0;padding:0;font-style:normal">"Trying viral Mr Gole's restaurant — tried buff momo, rice bowl and keema noodles. Totally loved the juicy momo here."</blockquote>
+          <figcaption class="testi__who">
+            <span class="testi__avatar" aria-hidden="true">F</span>
+            <span><span class="testi__name">foodelicious np</span><span class="testi__role">Food reviewer · May 2026</span></span>
+          </figcaption>
+        </figure>
+        <figure class="testi reveal" data-delay="2" style="margin:0">
+          <div class="testi__stars" aria-hidden="true"><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg><svg><use href="#i-star"></use></svg></div>
+          <blockquote class="testi__quote" style="border:0;padding:0;font-style:normal">"Congratulations Mr Gole — absolutely loved the food. Recommended dish: Buff Mo:Mo."</blockquote>
+          <figcaption class="testi__who">
+            <span class="testi__avatar" aria-hidden="true">L</span>
+            <span><span class="testi__name">Love Eat Repeat</span><span class="testi__role">Food reviewer · Apr 2026</span></span>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ Visit / location & contact ============ -->
+  <section class="section section--cream" id="visit">
+    <div class="container">
+      <div class="section__head reveal">
+        <p class="eyebrow">Visit us</p>
+        <h2 class="h2">Find The Second Plate</h2>
+      </div>
+      <div class="contact-grid">
+        <div class="map-frame reveal">
+          <!-- Google Maps embed (no API key needed via output=embed) -->
+          <iframe
+            title="Map — The Second Plate, Budhanilkantha"
+            src="https://www.google.com/maps?q=The+Second+Plate+Budhanilkantha+Kathmandu&z=16&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <div class="contact-card reveal" data-delay="1">
+          <!-- Hours unverified beyond opening time — neutral info badge, not a live open/closed claim -->
+          <span class="badge-hours" style="align-self:flex-start;margin-bottom:20px"><svg width="14" height="14" aria-hidden="true"><use href="#i-clock"></use></svg> Opens daily · 12 PM</span>
+          <div class="kv">
+            <span class="kv__icon"><svg aria-hidden="true"><use href="#i-pin"></use></svg></span>
+            <span><span class="kv__label">Address</span><br><span class="kv__value">Rudreshwor Chowk, Budhanilkantha, Kathmandu 44600 — opposite Hotel Pabera</span></span>
+          </div>
+          <div class="kv">
+            <span class="kv__icon"><svg aria-hidden="true"><use href="#i-clock"></use></svg></span>
+            <span><span class="kv__label">Hours</span><br><span class="kv__value">Opens 12:00 PM · please call to confirm today's hours</span></span>
+          </div>
+          <div class="kv">
+            <span class="kv__icon"><svg aria-hidden="true"><use href="#i-phone"></use></svg></span>
+            <span><span class="kv__label">Phone</span><br>
+              <span class="kv__value"><a href="tel:+9779712012300">+977 971-2012300</a> &nbsp;·&nbsp; <a href="tel:+9779762414070">9762414070</a></span></span>
+          </div>
+          <div class="kv">
+            <span class="kv__icon"><svg aria-hidden="true"><use href="#i-instagram"></use></svg></span>
+            <span><span class="kv__label">Instagram</span><br>
+              <span class="kv__value"><a href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener">@thesecondplate3</a></span></span>
+          </div>
+          <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px">
+            <a class="mg-btn mg-btn--primary" href="tel:+9779712012300"><svg width="16" height="16" aria-hidden="true"><use href="#i-phone"></use></svg> Call to reserve</a>
+            <a class="mg-btn mg-btn--secondary" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener">Message on Instagram</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA band ============ -->
+  <section class="cta-band">
+    <div class="container">
+      <div class="reveal">
+        <h2 class="h2">Come back for seconds</h2>
+        <p class="body">Because one plate is never enough. Drop by in Budhanilkantha, or follow along for what's cooking.</p>
+        <div class="cta-actions">
+          <a class="mg-btn mg-btn--primary mg-btn--lg" href="tel:+9779712012300">Call the restaurant</a>
+          <a class="mg-btn mg-btn--white mg-btn--lg" href="/">Meet Mr Gole</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+</Base>

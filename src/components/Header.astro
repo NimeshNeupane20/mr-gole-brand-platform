@@ -1,0 +1,40 @@
+---
+const { page = 'home' } = Astro.props;
+const solid = page !== 'home';
+---
+<header class={"site-header" + (solid ? " site-header--prefers-solid" : "")} role="banner">
+  <div class="site-header__inner">
+    <div class="nav-left">
+      <a class="logo" href="/" aria-label="Mr Gole — home">Mr Gole</a>
+      <nav class="main-nav" aria-label="Primary">
+        {page === 'restaurant' ? (
+          <>
+            <a class="nav-link" href="/">Mr Gole</a>
+            <a class="nav-link" href="#menu">Menu</a>
+            <a class="nav-link" href="#reviews">Reviews</a>
+            <a class="nav-link" href="#visit">Visit</a>
+          </>
+        ) : (
+          <>
+            <a class="nav-link" href="/about" aria-current={page === 'about' ? 'page' : undefined}>About</a>
+            <a class="nav-link" href="/#videos">Videos</a>
+            <a class="nav-link" href="/the-second-plate">The Second Plate</a>
+          </>
+        )}
+      </nav>
+    </div>
+    <div class="nav-right">
+      {page === 'restaurant' ? (
+        <>
+          <a class="mg-btn mg-btn--white" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-instagram"></use></svg><span class="label-hide">Instagram</span></a>
+          <a class="mg-btn mg-btn--primary" href="tel:+9779712012300">Call to reserve</a>
+        </>
+      ) : (
+        <>
+          <a class="mg-btn mg-btn--white" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-youtube"></use></svg><span class="label-hide">YouTube</span></a>
+          <a class="mg-btn mg-btn--primary" href="/the-second-plate">Visit the restaurant</a>
+        </>
+      )}
+    </div>
+  </div>
+</header>
