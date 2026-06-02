@@ -403,11 +403,11 @@ a { color: inherit; }
 .yantra-credit:hover .yantra-credit__logo,
 .yantra-credit:focus-visible .yantra-credit__logo { transform: rotate(360deg); }
 .yantra-credit__flourish {
-  display: block; height: 40px; width: 50%; opacity: 0.85;
+  display: block; height: 40px; width: 75%; opacity: 0.85;
   transition: opacity var(--dur) var(--ease);
 }
-.yantra-credit__flourish--left { justify-self: end; }
-.yantra-credit__flourish--right { justify-self: start; transform: scaleX(-1); }
+.yantra-credit__flourish--left { justify-self: end; transform: scaleX(-1); }
+.yantra-credit__flourish--right { justify-self: start; }
 .yantra-credit:hover .yantra-credit__flourish { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .yantra-credit__logo { transition: none; }
