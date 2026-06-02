@@ -137,6 +137,26 @@
     draw();
   }
 
+  /* ---- Magnetic buttons (vanilla port of React Bits <Magnet/>) on the shiny CTAs ---- */
+  if (!reduceMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    var magnets = Array.prototype.slice.call(document.querySelectorAll('.mg-btn--shiny'));
+    var pad = 60, strength = 3;
+    magnets.forEach(function (el) {
+      el.style.willChange = 'transform';
+      window.addEventListener('mousemove', function (e) {
+        var r = el.getBoundingClientRect();
+        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        if (Math.abs(cx - e.clientX) < r.width / 2 + pad && Math.abs(cy - e.clientY) < r.height / 2 + pad) {
+          el.style.transition = 'transform 0.3s ease-out';
+          el.style.transform = 'translate3d(' + ((e.clientX - cx) / strength).toFixed(1) + 'px,' + ((e.clientY - cy) / strength).toFixed(1) + 'px,0)';
+        } else if (el.style.transform && el.style.transform !== 'translate3d(0px,0px,0)') {
+          el.style.transition = 'transform 0.5s ease-in-out';
+          el.style.transform = 'translate3d(0px,0px,0)';
+        }
+      }, { passive: true });
+    });
+  }
+
   /* ---- Footer year ---- */
   var yr = document.querySelector('[data-year]');
   if (yr) yr.textContent = new Date().getFullYear();
