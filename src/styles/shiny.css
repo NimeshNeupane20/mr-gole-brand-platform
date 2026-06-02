@@ -30,7 +30,7 @@
       )
       border-box;
   box-shadow: 0 6px 18px rgba(191, 59, 48, 0.35);
-  animation: shiny-spin 3.2s linear infinite;
+  animation: shiny-spin 6s linear infinite;
   transition: box-shadow 0.3s var(--ease), transform 0.18s var(--ease);
 }
 .mg-btn--shiny .shine-label {
@@ -50,13 +50,13 @@
   pointer-events: none;
   background: linear-gradient(110deg, transparent 36%, rgba(255, 255, 255, 0.5) 50%, transparent 64%);
   background-size: 250% 100%;
-  animation: shiny-sheen 3.2s linear infinite;
+  animation: shiny-sheen 6s linear infinite;
 }
 .mg-btn--shiny:is(:hover, :focus-visible) {
   box-shadow: 0 0 20px 2px rgba(255, 106, 85, 0.6), 0 8px 24px rgba(191, 59, 48, 0.5);
-  animation-duration: 1.8s;
+  animation-duration: 4s;
 }
-.mg-btn--shiny:is(:hover, :focus-visible)::after { animation-duration: 1.8s; }
+.mg-btn--shiny:is(:hover, :focus-visible)::after { animation-duration: 4s; }
 .mg-btn--shiny:active { transform: translateY(1px); }
 
 @keyframes shiny-spin { to { --ga: 360deg; } }
