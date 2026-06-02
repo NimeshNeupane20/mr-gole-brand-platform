@@ -383,12 +383,13 @@ a { color: inherit; }
 
 /* Yantra International credit — subtle, centered between copyright and location */
 .yantra-credit {
-  display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 16px;
-  width: 100%; align-self: stretch;
+  display: inline-flex; align-items: center; justify-content: center;
+  align-self: center;
   font-size: 16px; color: var(--fg1); text-decoration: none;
   cursor: pointer;
 }
-.yantra-credit__stack { flex: 0 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.yantra-credit__stack { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.yantra-credit__divider { display: block; width: 280px; max-width: 80vw; height: auto; opacity: 0.9; margin-bottom: 2px; }
 .yantra-credit__text {
   font-weight: 600; color: var(--fg1); opacity: 0.92;
   transition: opacity var(--dur) var(--ease);
@@ -402,19 +403,10 @@ a { color: inherit; }
 }
 .yantra-credit:hover .yantra-credit__logo,
 .yantra-credit:focus-visible .yantra-credit__logo { transform: rotate(360deg); }
-.yantra-credit__flourish {
-  display: block; height: 38px; width: auto; flex: 1 1 0; min-width: 0; max-width: 340px; opacity: 0.85;
-  transition: opacity var(--dur) var(--ease);
-}
-.yantra-credit__flourish--left { transform: scaleX(-1); }
-.yantra-credit:hover .yantra-credit__flourish { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .yantra-credit__logo { transition: none; }
   .yantra-credit:hover .yantra-credit__logo,
   .yantra-credit:focus-visible .yantra-credit__logo { transform: none; }
-}
-@media (max-width: 600px) {
-  .yantra-credit__flourish { display: none; }
 }
 
 /* ============================================================
