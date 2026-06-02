@@ -383,8 +383,8 @@ a { color: inherit; }
 
 /* Yantra International credit — subtle, centered between copyright and location */
 .yantra-credit {
-  display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 20px;
-  width: 100%; align-self: stretch;
+  display: inline-flex; flex-direction: row; align-items: center; justify-content: center; gap: 16px;
+  align-self: center;
   font-size: 16px; color: var(--fg1); text-decoration: none;
   cursor: pointer;
 }
@@ -403,11 +403,10 @@ a { color: inherit; }
 .yantra-credit:hover .yantra-credit__logo,
 .yantra-credit:focus-visible .yantra-credit__logo { transform: rotate(360deg); }
 .yantra-credit__flourish {
-  display: block; height: 40px; width: 100%; opacity: 0.85;
+  display: block; height: 38px; width: 160px; flex: 0 0 160px; opacity: 0.85;
   transition: opacity var(--dur) var(--ease);
 }
-.yantra-credit__flourish--left { justify-self: end; transform: scaleX(-1); }
-.yantra-credit__flourish--right { justify-self: start; }
+.yantra-credit__flourish--left { transform: scaleX(-1); }
 .yantra-credit:hover .yantra-credit__flourish { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .yantra-credit__logo { transition: none; }
