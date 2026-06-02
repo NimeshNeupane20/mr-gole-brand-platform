@@ -1,0 +1,120 @@
+/* ============================================================
+   Shiny CTA — "Visit the restaurant" (vanilla port, brand red)
+   Adapted from the React Bits shiny-button (was blue/black) to the
+   site's brand red, plain CSS, reduced-motion aware.
+   ============================================================ */
+@property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+@property --gradient-percent { syntax: "<percentage>"; initial-value: 5%; inherits: false; }
+@property --gradient-shine { syntax: "<color>"; initial-value: #ffd9d2; inherits: false; }
+
+.mg-btn--shiny {
+  --shiny-bg: #bf3b30;
+  --shiny-bg-subtle: #9e2c22;
+  --shiny-fg: #fff;
+  --shiny-highlight: #ff6a55;
+  --shiny-highlight-subtle: #ffd6cf;
+  --s-animation: gradient-angle linear infinite;
+  --s-duration: 3s;
+  --shadow-size: 2px;
+  --s-transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  color: var(--shiny-fg);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
+    conic-gradient(
+        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
+        transparent,
+        var(--shiny-highlight) var(--gradient-percent),
+        var(--gradient-shine) calc(var(--gradient-percent) * 2),
+        var(--shiny-highlight) calc(var(--gradient-percent) * 3),
+        transparent calc(var(--gradient-percent) * 4)
+      )
+      border-box;
+  box-shadow: inset 0 0 0 1px var(--shiny-bg-subtle);
+  transition: var(--s-transition);
+  transition-property: --gradient-angle-offset, --gradient-percent, --gradient-shine;
+}
+.mg-btn--shiny::before,
+.mg-btn--shiny::after,
+.mg-btn--shiny .shine-label::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+}
+.mg-btn--shiny:active { translate: 0 1px; }
+.mg-btn--shiny::before {
+  --size: calc(100% - var(--shadow-size) * 3);
+  --position: 2px;
+  --space: calc(var(--position) * 2);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(circle at var(--position) var(--position), #fff calc(var(--position) / 4), transparent 0) padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
+  border-radius: inherit;
+  opacity: 0.4;
+  z-index: -1;
+}
+.mg-btn--shiny::after {
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(-50deg, transparent, var(--shiny-highlight), transparent);
+  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
+  opacity: 0.6;
+}
+.mg-btn--shiny .shine-label {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.mg-btn--shiny .shine-label::before {
+  --size: calc(100% + 1rem);
+  width: var(--size);
+  height: var(--size);
+  box-shadow: inset 0 -1ex 2rem 4px var(--shiny-highlight);
+  opacity: 0;
+  transition: opacity var(--s-transition);
+  animation: calc(var(--s-duration) * 1.5) breathe linear infinite;
+}
+.mg-btn--shiny,
+.mg-btn--shiny::before,
+.mg-btn--shiny::after {
+  animation:
+    var(--s-animation) var(--s-duration),
+    var(--s-animation) calc(var(--s-duration) / 0.4) reverse paused;
+  animation-composition: add;
+}
+.mg-btn--shiny:is(:hover, :focus-visible) {
+  --gradient-percent: 20%;
+  --gradient-angle-offset: 95deg;
+  --gradient-shine: var(--shiny-highlight-subtle);
+}
+.mg-btn--shiny:is(:hover, :focus-visible),
+.mg-btn--shiny:is(:hover, :focus-visible)::before,
+.mg-btn--shiny:is(:hover, :focus-visible)::after {
+  animation-play-state: running;
+}
+.mg-btn--shiny:is(:hover, :focus-visible) .shine-label::before { opacity: 1; }
+
+@keyframes gradient-angle { to { --gradient-angle: 360deg; } }
+@keyframes shimmer { to { rotate: 360deg; } }
+@keyframes breathe { from, to { scale: 1; } 50% { scale: 1.2; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .mg-btn--shiny,
+  .mg-btn--shiny::before,
+  .mg-btn--shiny::after,
+  .mg-btn--shiny .shine-label::before { animation: none !important; }
+}
