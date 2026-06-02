@@ -704,3 +704,39 @@ a { color: inherit; }
   .vcard__play { width: 52px; height: 52px; }
   .footer-social a, .footer-col__links a { min-height: 40px; display: inline-flex; align-items: center; }
 }
+
+/* ============================================================
+   MOBILE refinements (request-specific overrides)
+   ============================================================ */
+@media (max-width: 760px) {
+  /* nav 50% transparent (all states) */
+  .site-header, .site-header.is-solid, .site-header--prefers-solid {
+    background: rgba(244, 242, 238, 0.5) !important;
+  }
+}
+@media (max-width: 600px) {
+  /* tighter vertical rhythm — less elongated overall */
+  .section { padding: 46px 0; }
+  .section--tight { padding: 32px 0; }
+
+  /* About: photo incorporated HORIZONTALLY beside the text, framed on Gole's face */
+  #about .split, #bio .split { flex-direction: row; align-items: stretch; min-height: 0; }
+  #about .split__text, #bio .split__text { padding: 20px; }
+  #about .split__media, #bio .split__media { flex: 0 0 124px; min-height: 0; width: auto; }
+  #about .split__media .photo, #bio .split__media .photo {
+    height: 100%; min-height: 100%; background-position: center 16% !important;
+  }
+
+  /* Watch: show only 4 videos on mobile (See all button stays) */
+  #videos .vgallery .vcard:nth-child(n + 5) { display: none; }
+
+  /* Follow Along: socials horizontal (2-up) instead of stacked */
+  .socials { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .social-card { padding: 14px; gap: 10px; }
+  .social-card__handle { font-size: 13px; }
+  .social-card__platform { font-size: 11px; }
+
+  /* Footer horizontal, less stretched (2-col; brand full width) */
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 22px 24px; }
+  .footer-brand { grid-column: 1 / -1; }
+}
