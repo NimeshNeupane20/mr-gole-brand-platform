@@ -389,7 +389,7 @@ a { color: inherit; }
   cursor: pointer;
 }
 .yantra-credit__stack { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
-.yantra-credit__divider { display: block; width: 100%; height: 36px; opacity: 0.9; margin-bottom: 2px; }
+.yantra-credit__divider { display: block; width: auto; height: 36px; max-width: 100%; opacity: 0.9; margin-bottom: 2px; }
 .yantra-credit__text {
   font-weight: 600; color: var(--fg1); opacity: 0.92;
   transition: opacity var(--dur) var(--ease);
