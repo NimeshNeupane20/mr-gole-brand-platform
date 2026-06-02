@@ -33,7 +33,66 @@
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> Mr Gole · Phuntsok Namgyel Lama</span>
+      <a
+        class="yantra-credit"
+        href="https://yantrainternational.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Designed by Yantra International — visit website"
+      >
+        <img
+          class="yantra-credit__logo"
+          src="/assets/yantra-logo.png"
+          alt="Yantra International logo"
+          width="20"
+          height="20"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="yantra-credit__text">Designed by Yantra International</span>
+      </a>
       <span>Kathmandu, Nepal</span>
     </div>
   </div>
 </footer>
+
+<script>
+  // Fidget-spinner hover: ease-in to steady spin, ease-out to a gentle stop (no snap-back).
+  // Uses the Web Animations API so the logo decelerates from its current angle.
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.yantra-credit').forEach((credit) => {
+    const logo = credit.querySelector('.yantra-credit__logo');
+    if (!logo || reduceMotion) return;
+
+    const spin = logo.animate(
+      [{ transform: 'rotate(0deg)' }, { transform: 'rotate(360deg)' }],
+      { duration: 1100, iterations: Infinity, easing: 'linear' }
+    );
+    spin.pause();
+    spin.playbackRate = 0;
+
+    let raf = 0;
+    const ramp = (target) => {
+      cancelAnimationFrame(raf);
+      if (target > 0) spin.play();
+      const step = () => {
+        const rate = spin.playbackRate;
+        const next = rate + (target - rate) * 0.12; // exponential ease toward target
+        if (Math.abs(target - next) < 0.01) {
+          spin.playbackRate = target;
+          if (target === 0) spin.pause();
+          return;
+        }
+        spin.playbackRate = next;
+        raf = requestAnimationFrame(step);
+      };
+      step();
+    };
+
+    credit.addEventListener('mouseenter', () => ramp(1));
+    credit.addEventListener('mouseleave', () => ramp(0));
+    credit.addEventListener('focusin', () => ramp(1));
+    credit.addEventListener('focusout', () => ramp(0));
+  });
+</script>
