@@ -1,3 +1,6 @@
+---
+import YantraCredit from "./YantraCredit.astro";
+---
 <footer class="site-footer" role="contentinfo">
   <div class="site-footer__inner">
     <div class="footer-grid">
@@ -36,46 +39,7 @@
         <span>© <span data-year>2026</span> Mr Gole · Phuntsok Namgyel Lama</span>
         <span>Kathmandu, Nepal</span>
       </div>
-      <a
-        class="yantra-credit"
-        href="https://yantrainternational.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Designed by Yantra International — visit website"
-      >
-        <span class="yantra-credit__stack">
-          <span class="yantra-credit__rule">
-            <svg class="yantra-credit__ornament" viewBox="0 0 1200 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true" focusable="false">
-              <defs>
-                <linearGradient id="ya-shine" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="300" y2="0" spreadMethod="pad">
-                  <stop offset="0" stop-color="#16110F" />
-                  <stop offset="0.5" stop-color="#a89f96" />
-                  <stop offset="1" stop-color="#16110F" />
-                  <animateTransform attributeName="gradientTransform" type="translate" from="-380 0" to="1420 0" dur="3.5s" repeatCount="indefinite" />
-                </linearGradient>
-              </defs>
-              <g id="ya-half" fill="url(#ya-shine)" stroke="url(#ya-shine)" stroke-linejoin="miter">
-                <rect x="724" y="39" width="392" height="2" rx="1" stroke="none" />
-                <path d="M770 18 L792 40 L770 62 L748 40 Z" fill="none" stroke-width="2.4" />
-                <path d="M770 33 L777 40 L770 47 L763 40 Z" stroke="none" />
-                <path d="M880 25 L895 40 L880 55 L865 40 Z" fill="none" stroke-width="2" />
-                <path d="M880 35 L885 40 L880 45 L875 40 Z" stroke="none" />
-                <path d="M975 33 L982 40 L975 47 L968 40 Z" stroke="none" />
-                <path d="M1050 40 Q1116 32.5 1184 40 Q1116 47.5 1050 40 Z" stroke="none" />
-              </g>
-              <use href="#ya-half" transform="matrix(-1 0 0 1 1200 0)" />
-            </svg>
-            <img
-              class="yantra-credit__logo"
-              src="/assets/yantra-logo.png"
-              alt="Yantra International logo"
-              loading="lazy"
-              decoding="async"
-            />
-          </span>
-          <span class="yantra-credit__text">Designed by Yantra International</span>
-        </span>
-      </a>
+      <YantraCredit />
     </div>
   </div>
 </footer>

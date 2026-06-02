@@ -1,0 +1,190 @@
+---
+/**
+ * YantraCredit — self-contained "Designed by Yantra International" signature.
+ *
+ * A single reusable UI element: mandala logo, geometric flourish (animated
+ * shine), and the credit line. Styles are scoped and fall back gracefully when
+ * the host project has no design tokens, so it drops into any Astro project.
+ *
+ * Reuse: copy this file plus the logo asset, then `<YantraCredit />`.
+ * Override anything via props.
+ */
+interface Props {
+  /** Link target (opens in a new tab). */
+  href?: string;
+  /** Path to the mandala logo asset (PNG/SVG). Copy it into the host project. */
+  logoSrc?: string;
+  /** Credit line text. */
+  text?: string;
+  /** Accessible label for the link. */
+  ariaLabel?: string;
+  /** Duration of the flourish shine sweep, e.g. "3.5s". */
+  shineDuration?: string;
+}
+
+const {
+  href = "https://yantrainternational.com",
+  logoSrc = "/assets/yantra-logo.png",
+  text = "Designed by Yantra International",
+  ariaLabel = "Designed by Yantra International, visit website",
+  shineDuration = "3.5s",
+} = Astro.props;
+---
+
+<a
+  class="yantra-credit"
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={ariaLabel}
+>
+  <span class="yantra-credit__stack">
+    <span class="yantra-credit__rule">
+      <svg
+        class="yantra-credit__ornament"
+        viewBox="0 0 1200 80"
+        preserveAspectRatio="xMidYMid meet"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <defs>
+          <linearGradient
+            id="ya-shine"
+            gradientUnits="userSpaceOnUse"
+            x1="0"
+            y1="0"
+            x2="300"
+            y2="0"
+            spreadMethod="pad"
+          >
+            <stop offset="0" stop-color="#16110F"></stop>
+            <stop offset="0.5" stop-color="#a89f96"></stop>
+            <stop offset="1" stop-color="#16110F"></stop>
+            <animateTransform
+              attributeName="gradientTransform"
+              type="translate"
+              from="-380 0"
+              to="1420 0"
+              dur={shineDuration}
+              repeatCount="indefinite"
+            ></animateTransform>
+          </linearGradient>
+        </defs>
+        <g id="ya-half" fill="url(#ya-shine)" stroke="url(#ya-shine)" stroke-linejoin="miter">
+          <rect x="724" y="39" width="392" height="2" rx="1" stroke="none"></rect>
+          <path d="M770 18 L792 40 L770 62 L748 40 Z" fill="none" stroke-width="2.4"></path>
+          <path d="M770 33 L777 40 L770 47 L763 40 Z" stroke="none"></path>
+          <path d="M880 25 L895 40 L880 55 L865 40 Z" fill="none" stroke-width="2"></path>
+          <path d="M880 35 L885 40 L880 45 L875 40 Z" stroke="none"></path>
+          <path d="M975 33 L982 40 L975 47 L968 40 Z" stroke="none"></path>
+          <path d="M1050 40 Q1116 32.5 1184 40 Q1116 47.5 1050 40 Z" stroke="none"></path>
+        </g>
+        <use href="#ya-half" transform="matrix(-1 0 0 1 1200 0)"></use>
+      </svg>
+      <img
+        class="yantra-credit__logo"
+        src={logoSrc}
+        alt="Yantra International logo"
+        loading="lazy"
+        decoding="async"
+      />
+    </span>
+    <span class="yantra-credit__text">{text}</span>
+  </span>
+</a>
+
+<style>
+  /* Token fallbacks keep this portable in projects without a design system. */
+  .yantra-credit {
+    --yc-fg1: var(--fg1, #16110f);
+    --yc-fg2: var(--fg2, #46403c);
+    --yc-fg3: var(--fg3, #6b6560);
+    --yc-font-display: var(--font-display, "Fredoka", system-ui, sans-serif);
+    --yc-dur: var(--dur, 200ms);
+    --yc-ease: var(--ease, cubic-bezier(0.22, 0.61, 0.36, 1));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--yc-fg3);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .yantra-credit__stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 320px;
+    max-width: 100%;
+  }
+  .yantra-credit__rule {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+  }
+  .yantra-credit__ornament {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    height: 52px;
+    display: block;
+  }
+  .yantra-credit__logo {
+    position: relative;
+    z-index: 1;
+    width: auto;
+    height: 38px;
+    display: block;
+    flex-shrink: 0;
+    transform-origin: 50% 50%;
+    will-change: transform;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .yantra-credit__text {
+    font-family: var(--yc-font-display);
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--yc-fg2);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    text-align: center;
+    transform-origin: center;
+    will-change: transform;
+    transition:
+      transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+      color var(--yc-dur) var(--yc-ease);
+  }
+  .yantra-credit:hover .yantra-credit__logo,
+  .yantra-credit:focus-visible .yantra-credit__logo {
+    transform: rotate(360deg);
+  }
+  .yantra-credit:hover .yantra-credit__text,
+  .yantra-credit:focus-visible .yantra-credit__text {
+    color: var(--yc-fg1);
+    transform: scale(1.07);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .yantra-credit__logo {
+      transition: none;
+    }
+    .yantra-credit:hover .yantra-credit__logo,
+    .yantra-credit:focus-visible .yantra-credit__logo {
+      transform: none;
+    }
+    .yantra-credit__text {
+      transition: color var(--yc-dur) var(--yc-ease);
+    }
+    .yantra-credit:hover .yantra-credit__text {
+      transform: none;
+    }
+  }
+</style>
