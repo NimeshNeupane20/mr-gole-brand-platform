@@ -373,9 +373,13 @@ a { color: inherit; }
 .footer-social svg { width: 18px; height: 18px; }
 .footer-bottom {
   border-top: 1px solid var(--border); margin-top: 40px; padding-top: 20px;
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+  display: flex; flex-direction: column; gap: 18px;
   font-size: 14px; color: var(--fg3);
 }
+.footer-bottom__row {
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.yantra-credit { align-self: center; }
 
 /* Yantra International credit — subtle, centered between copyright and location */
 .yantra-credit {
