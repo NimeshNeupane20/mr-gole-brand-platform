@@ -406,7 +406,7 @@ a { color: inherit; }
   display: block; width: 100%; height: 24px; color: var(--fg1); opacity: 0.85;
   transition: opacity var(--dur) var(--ease);
 }
-.yantra-credit__flourish--left { transform: scaleX(-1); }
+.yantra-credit__flourish--right { transform: scaleX(-1); }
 .yantra-credit:hover .yantra-credit__flourish { opacity: 1; }
 @media (prefers-reduced-motion: reduce) {
   .yantra-credit__logo { transition: none; }
