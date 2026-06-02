@@ -60,7 +60,8 @@ a { color: inherit; }
   border-bottom-color: rgba(228,226,222,0.6);
   box-shadow: var(--shadow-sticky);
 }
-.nav-logo { width: 19px; height: 19px; object-fit: contain; margin-right: 7px; flex-shrink: 0; }
+.nav-logo { width: 19px; height: 19px; object-fit: contain; margin-right: -2px; flex-shrink: 0; transition: transform .2s var(--ease); }
+.nav-link:hover .nav-logo, .nav-link:focus-visible .nav-logo { transform: scale(1.15); }
 .site-header__inner {
   max-width: 1280px; margin: 0 auto; padding-inline: 28px; height: 64px;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;
