@@ -1,38 +1,60 @@
 ---
 const { page = 'home' } = Astro.props;
 const solid = page !== 'home';
+const links =
+  page === 'restaurant'
+    ? [['/', 'Mr Gole'], ['#menu', 'Menu'], ['#reviews', 'Reviews'], ['#visit', 'Visit']]
+    : [['/about', 'About'], ['/#videos', 'Videos'], ['/the-second-plate', 'The Second Plate']];
+const ig = page === 'restaurant';
 ---
 <header class={"site-header" + (solid ? " site-header--prefers-solid" : "")} role="banner">
   <div class="site-header__inner">
     <div class="nav-left">
       <a class="logo" href="/" aria-label="Mr Gole — home">Mr Gole</a>
       <nav class="main-nav" aria-label="Primary">
-        {page === 'restaurant' ? (
-          <>
-            <a class="nav-link" href="/">Mr Gole</a>
-            <a class="nav-link" href="#menu">Menu</a>
-            <a class="nav-link" href="#reviews">Reviews</a>
-            <a class="nav-link" href="#visit">Visit</a>
-          </>
-        ) : (
-          <>
-            <a class="nav-link" href="/about" aria-current={page === 'about' ? 'page' : undefined}>About</a>
-            <a class="nav-link" href="/#videos">Videos</a>
-            <a class="nav-link" href="/the-second-plate"><img class="nav-logo" src="/assets/img/tsp-logo.png" alt="" width="19" height="19" />The Second Plate</a>
-          </>
-        )}
+        {links.map(([href, label]) => (
+          <a class="nav-link" href={href} aria-current={label === 'About' && page === 'about' ? 'page' : undefined}>
+            {label === 'The Second Plate' && <img class="nav-logo" src="/assets/img/tsp-logo.png" alt="" width="19" height="19" />}
+            {label}
+          </a>
+        ))}
       </nav>
     </div>
     <div class="nav-right">
-      {page === 'restaurant' ? (
+      {ig ? (
         <>
-          <a class="mg-btn mg-btn--white" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-instagram"></use></svg><span class="label-hide">Instagram</span></a>
-          <a class="mg-btn mg-btn--primary" href="tel:+9779712012300">Call to reserve</a>
+          <a class="mg-btn mg-btn--white nav-action" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-instagram"></use></svg><span class="label-hide">Instagram</span></a>
+          <a class="mg-btn mg-btn--primary nav-action" href="tel:+9779712012300">Call to reserve</a>
         </>
       ) : (
         <>
-          <a class="mg-btn mg-btn--white" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-youtube"></use></svg><span class="label-hide">YouTube</span></a>
-          <a class="mg-btn mg-btn--primary" href="/the-second-plate">Visit the restaurant</a>
+          <a class="mg-btn mg-btn--white nav-action" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-youtube"></use></svg><span class="label-hide">YouTube</span></a>
+          <a class="mg-btn mg-btn--primary nav-action" href="/the-second-plate">Visit the restaurant</a>
+        </>
+      )}
+      <button class="nav-toggle" data-nav-toggle aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+    {links.map(([href, label]) => (
+      <a class="mobile-nav__link" href={href}>
+        {label === 'The Second Plate' && <img class="nav-logo" src="/assets/img/tsp-logo.png" alt="" width="20" height="20" />}
+        {label}
+      </a>
+    ))}
+    <div class="mobile-nav__actions">
+      {ig ? (
+        <>
+          <a class="mg-btn mg-btn--white mg-btn--lg" href="https://www.instagram.com/thesecondplate3" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-instagram"></use></svg> Instagram</a>
+          <a class="mg-btn mg-btn--primary mg-btn--lg" href="tel:+9779712012300">Call to reserve</a>
+        </>
+      ) : (
+        <>
+          <a class="mg-btn mg-btn--white mg-btn--lg" href="https://www.youtube.com/@mrgole8" target="_blank" rel="noopener"><svg width="17" height="17" aria-hidden="true"><use href="#i-youtube"></use></svg> YouTube</a>
+          <a class="mg-btn mg-btn--primary mg-btn--lg" href="/the-second-plate">Visit the restaurant</a>
         </>
       )}
     </div>
