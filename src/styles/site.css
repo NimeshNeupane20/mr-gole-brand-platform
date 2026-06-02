@@ -55,11 +55,12 @@ a { color: inherit; }
   transition: background .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
 }
 .site-header.is-solid {
-  background: rgba(244,242,238,0.5);
-  backdrop-filter: saturate(140%) blur(12px); -webkit-backdrop-filter: saturate(140%) blur(12px);
-  border-bottom-color: var(--border);
+  background: rgba(244,242,238,0.3);
+  backdrop-filter: saturate(140%) blur(14px); -webkit-backdrop-filter: saturate(140%) blur(14px);
+  border-bottom-color: rgba(228,226,222,0.6);
   box-shadow: var(--shadow-sticky);
 }
+.nav-logo { width: 19px; height: 19px; object-fit: contain; margin-right: 7px; flex-shrink: 0; }
 .site-header__inner {
   max-width: 1280px; margin: 0 auto; padding-inline: 28px; height: 64px;
   display: flex; align-items: center; justify-content: space-between; gap: 24px;

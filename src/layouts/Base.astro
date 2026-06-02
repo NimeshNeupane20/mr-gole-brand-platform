@@ -3,7 +3,6 @@ import '../styles/global.css';
 import IconSprite from '../components/IconSprite.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import BlobCursor from '../components/BlobCursor.astro';
 const { title, description = '', page = 'home' } = Astro.props;
 ---
 <!doctype html>
@@ -22,7 +21,6 @@ const { title, description = '', page = 'home' } = Astro.props;
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <BlobCursor />
     <IconSprite />
     <Header page={page} />
     <slot />
