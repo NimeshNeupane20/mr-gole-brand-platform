@@ -384,20 +384,25 @@ a { color: inherit; }
 /* Yantra International credit — subtle, centered between copyright and location */
 .yantra-credit {
   display: flex; align-items: center; justify-content: center;
-  width: 100%; align-self: stretch;
-  font-size: 16px; color: var(--fg1); text-decoration: none;
+  align-self: center;
+  font-size: 13px; letter-spacing: 0.04em; color: var(--fg3); text-decoration: none;
   cursor: pointer;
 }
-.yantra-credit__stack { display: flex; flex-direction: column; align-items: center; gap: 2px; width: 100%; }
-.yantra-credit__divider { display: block; width: auto; height: 36px; max-width: 100%; opacity: 0.9; margin-bottom: 2px; }
+.yantra-credit__stack { display: flex; flex-direction: column; align-items: center; gap: 12px; width: 300px; max-width: 100%; }
+.yantra-credit__rule { display: flex; align-items: center; gap: 14px; width: 100%; }
+.yantra-credit__rule::before,
+.yantra-credit__rule::after {
+  content: ""; flex: 1 1 auto; height: 1px;
+  background: color-mix(in oklch, var(--fg1) 18%, transparent);
+}
 .yantra-credit__text {
-  font-weight: 600; color: var(--fg1); opacity: 0.92;
-  transition: opacity var(--dur) var(--ease);
+  font-weight: 500; color: var(--fg3); text-transform: uppercase; letter-spacing: 0.12em;
+  transition: color var(--dur) var(--ease);
 }
 .yantra-credit:hover .yantra-credit__text,
-.yantra-credit:focus-visible .yantra-credit__text { opacity: 1; }
+.yantra-credit:focus-visible .yantra-credit__text { color: var(--fg1); }
 .yantra-credit__logo {
-  width: auto; height: 36px; display: block; flex-shrink: 0;
+  width: auto; height: 24px; display: block; flex-shrink: 0;
   transform-origin: 50% 50%; will-change: transform;
   transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
