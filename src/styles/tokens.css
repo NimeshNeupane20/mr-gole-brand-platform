@@ -241,7 +241,7 @@
   color: var(--fg1);
   border-color: var(--border);
 }
-.mg-btn--white:hover { background: var(--bg-cream); }
+.mg-btn--white:hover { background: var(--bg-cream); transform: scale(1.06); }
 
 .mg-btn--ghost {
   background: transparent;

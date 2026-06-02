@@ -76,5 +76,5 @@
 @media (prefers-reduced-motion: reduce) {
   .mg-btn--shiny,
   .mg-btn--shiny::after { animation: none !important; }
-  .nav-link:hover, .logo:hover { transform: none; }
+  .nav-link:hover, .logo:hover, .mg-btn--white:hover { transform: none; }
 }
