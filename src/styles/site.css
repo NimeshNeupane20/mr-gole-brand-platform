@@ -258,7 +258,7 @@ a { color: inherit; }
    ============================================================ */
 .socials { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
 .social-card {
-  display: flex; align-items: center; gap: 14px; text-decoration: none;
+  display: flex; align-items: center; justify-content: center; gap: 14px; text-decoration: none;
   background: #fff; border: 1px solid var(--border); border-radius: var(--radius-card);
   padding: 20px 22px; transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
