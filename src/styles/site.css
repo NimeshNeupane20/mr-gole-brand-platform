@@ -740,3 +740,13 @@ a { color: inherit; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 22px 24px; }
   .footer-brand { grid-column: 1 / -1; }
 }
+
+/* MOBILE — override the earlier `1fr !important` so socials + footer go horizontal */
+@media (max-width: 600px) {
+  .socials { grid-template-columns: repeat(2, 1fr) !important; }
+  .footer-grid { grid-template-columns: 1fr 1fr !important; }
+  .footer-brand { grid-column: 1 / -1; }
+  /* About photo: wider strip + framed higher so Gole's face shows (not the dress) */
+  #about .split__media, #bio .split__media { flex-basis: 150px; }
+  #about .split__media .photo, #bio .split__media .photo { background-position: 50% 10% !important; }
+}
