@@ -1,120 +1,80 @@
 /* ============================================================
-   Shiny CTA — "Visit the restaurant" (vanilla port, brand red)
-   Adapted from the React Bits shiny-button (was blue/black) to the
-   site's brand red, plain CSS, reduced-motion aware.
+   Shiny CTA — "Visit the restaurant" (vanilla, brand red)
+   Pill-shaped (no square artifacts), always-visible shine.
    ============================================================ */
-@property --gradient-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-@property --gradient-angle-offset { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
-@property --gradient-percent { syntax: "<percentage>"; initial-value: 5%; inherits: false; }
-@property --gradient-shine { syntax: "<color>"; initial-value: #ffd9d2; inherits: false; }
+@property --ga { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
 
 .mg-btn--shiny {
   --shiny-bg: #bf3b30;
-  --shiny-bg-subtle: #9e2c22;
-  --shiny-fg: #fff;
-  --shiny-highlight: #ff6a55;
-  --shiny-highlight-subtle: #ffd6cf;
-  --s-animation: gradient-angle linear infinite;
-  --s-duration: 3s;
-  --shadow-size: 2px;
-  --s-transition: 800ms cubic-bezier(0.25, 1, 0.5, 1);
-  isolation: isolate;
   position: relative;
+  isolation: isolate;
   overflow: hidden;
-  cursor: pointer;
-  color: var(--shiny-fg);
-  border: 1px solid transparent;
+  color: #fff;
+  border: 2px solid transparent;
+  border-radius: 9999px;
+  /* solid red fill + rotating bright shine on the border */
   background:
     linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
     conic-gradient(
-        from calc(var(--gradient-angle) - var(--gradient-angle-offset)),
-        transparent,
-        var(--shiny-highlight) var(--gradient-percent),
-        var(--gradient-shine) calc(var(--gradient-percent) * 2),
-        var(--shiny-highlight) calc(var(--gradient-percent) * 3),
-        transparent calc(var(--gradient-percent) * 4)
+        from var(--ga),
+        rgba(255, 255, 255, 0) 0%,
+        #ff8a78 7%,
+        #ffffff 13%,
+        #ff8a78 19%,
+        rgba(255, 255, 255, 0) 30%,
+        rgba(255, 255, 255, 0) 52%,
+        #ff8a78 60%,
+        #ffe3dd 66%,
+        #ff8a78 72%,
+        rgba(255, 255, 255, 0) 82%
       )
       border-box;
-  box-shadow: inset 0 0 0 1px var(--shiny-bg-subtle);
-  transition: var(--s-transition);
-  transition-property: --gradient-angle-offset, --gradient-percent, --gradient-shine;
-}
-.mg-btn--shiny::before,
-.mg-btn--shiny::after,
-.mg-btn--shiny .shine-label::before {
-  content: "";
-  pointer-events: none;
-  position: absolute;
-  inset-inline-start: 50%;
-  inset-block-start: 50%;
-  translate: -50% -50%;
-  z-index: -1;
-}
-.mg-btn--shiny:active { translate: 0 1px; }
-.mg-btn--shiny::before {
-  --size: calc(100% - var(--shadow-size) * 3);
-  --position: 2px;
-  --space: calc(var(--position) * 2);
-  width: var(--size);
-  height: var(--size);
-  background: radial-gradient(circle at var(--position) var(--position), #fff calc(var(--position) / 4), transparent 0) padding-box;
-  background-size: var(--space) var(--space);
-  background-repeat: space;
-  mask-image: conic-gradient(from calc(var(--gradient-angle) + 45deg), black, transparent 10% 90%, black);
-  border-radius: inherit;
-  opacity: 0.4;
-  z-index: -1;
-}
-.mg-btn--shiny::after {
-  width: 100%;
-  aspect-ratio: 1;
-  background: linear-gradient(-50deg, transparent, var(--shiny-highlight), transparent);
-  mask-image: radial-gradient(circle at bottom, transparent 40%, black);
-  opacity: 0.6;
+  box-shadow: 0 6px 18px rgba(191, 59, 48, 0.35);
+  animation: shiny-spin 3.2s linear infinite;
+  transition: box-shadow 0.3s var(--ease), transform 0.18s var(--ease);
 }
 .mg-btn--shiny .shine-label {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: inline-flex;
   align-items: center;
   gap: 8px;
 }
-.mg-btn--shiny .shine-label::before {
-  --size: calc(100% + 1rem);
-  width: var(--size);
-  height: var(--size);
-  box-shadow: inset 0 -1ex 2rem 4px var(--shiny-highlight);
-  opacity: 0;
-  transition: opacity var(--s-transition);
-  animation: calc(var(--s-duration) * 1.5) breathe linear infinite;
-}
-.mg-btn--shiny,
-.mg-btn--shiny::before,
+/* diagonal sheen sweeping across the fill — clipped to the pill, no rectangle */
 .mg-btn--shiny::after {
-  animation:
-    var(--s-animation) var(--s-duration),
-    var(--s-animation) calc(var(--s-duration) / 0.4) reverse paused;
-  animation-composition: add;
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 36%, rgba(255, 255, 255, 0.5) 50%, transparent 64%);
+  background-size: 250% 100%;
+  animation: shiny-sheen 3.2s linear infinite;
 }
 .mg-btn--shiny:is(:hover, :focus-visible) {
-  --gradient-percent: 20%;
-  --gradient-angle-offset: 95deg;
-  --gradient-shine: var(--shiny-highlight-subtle);
+  box-shadow: 0 0 20px 2px rgba(255, 106, 85, 0.6), 0 8px 24px rgba(191, 59, 48, 0.5);
+  animation-duration: 1.8s;
 }
-.mg-btn--shiny:is(:hover, :focus-visible),
-.mg-btn--shiny:is(:hover, :focus-visible)::before,
-.mg-btn--shiny:is(:hover, :focus-visible)::after {
-  animation-play-state: running;
-}
-.mg-btn--shiny:is(:hover, :focus-visible) .shine-label::before { opacity: 1; }
+.mg-btn--shiny:is(:hover, :focus-visible)::after { animation-duration: 1.8s; }
+.mg-btn--shiny:active { transform: translateY(1px); }
 
-@keyframes gradient-angle { to { --gradient-angle: 360deg; } }
-@keyframes shimmer { to { rotate: 360deg; } }
-@keyframes breathe { from, to { scale: 1; } 50% { scale: 1.2; } }
+@keyframes shiny-spin { to { --ga: 360deg; } }
+@keyframes shiny-sheen {
+  0% { background-position: 150% 0; }
+  100% { background-position: -150% 0; }
+}
+
+/* ============================================================
+   Nav words — slight zoom on hover
+   ============================================================ */
+.nav-link { transition: color 0.2s var(--ease), transform 0.2s var(--ease); transform-origin: center; }
+.nav-link:hover { transform: scale(1.09); }
+.logo { transition: color 0.25s var(--ease), transform 0.2s var(--ease); }
+.logo:hover { transform: scale(1.05); }
 
 @media (prefers-reduced-motion: reduce) {
   .mg-btn--shiny,
-  .mg-btn--shiny::before,
-  .mg-btn--shiny::after,
-  .mg-btn--shiny .shine-label::before { animation: none !important; }
+  .mg-btn--shiny::after { animation: none !important; }
+  .nav-link:hover, .logo:hover { transform: none; }
 }
