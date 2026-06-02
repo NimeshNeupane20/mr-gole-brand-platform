@@ -263,7 +263,8 @@ a { color: inherit; }
   padding: 20px 22px; transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
 }
 .social-card:hover { border-color: var(--brand-red); transform: translateY(-3px); }
-.social-card__icon { width: 28px; height: 28px; flex-shrink: 0; color: var(--fg1); }
+.social-card__icon { width: 28px; height: 28px; flex-shrink: 0; color: var(--fg1); transition: transform var(--dur) var(--ease); }
+.social-card:hover .social-card__icon { transform: scale(1.18); }
 .social-card__icon svg { width: 100%; height: 100%; }
 .social-card__handle { font-weight: 600; font-size: 15px; color: var(--fg1); }
 .social-card__platform { font-size: 13px; color: var(--fg3); margin-top: 2px; }
